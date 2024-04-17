@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chamomile</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+    <header class="grid-container">
+        <div class="menu">
+            <img class="just-menu" src="../../asp/home/justificacion.png" alt="menu">
+        </div>
+        <div class="logo">
+            <img class="logo-img" src="../../asp/home/logo_trial.png" alt="logo">
+        </div>
+        <div class="links">
+            <a href="">Contact us</a>
+            <a href="">Log in</a>
+            <a href="">Sign up</a>
+        </div>
+        <div class="cart">
+            <img class="cart-img" src="../../asp/home/carrito-de-compras.png" alt="cart">
+        </div>
+    </header>
+    <main class="grid-body">
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="../../asp/home/5-tendencias-en-bolsos-de-moda-primavera-verano-2019.webp">
+            </div>
+            <div class="mySlides fade">
+                <img src="../../asp/home/coleccion.jpg">
+            </div>
+            <div class="mySlides fade">
+                <img src="../../asp/home/promocion.jpeg">
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+
+        <div class="grid-products">
+            <div class="categoñry">
+                <div class="filter">
+                    <div class="search-container">
+                        <input type="text" placeholder="Buscar...">
+                    </div>
+                </div>
+                <div class="links-categories">
+                    <ul>
+                        <li>
+                            <a href="#">Category</a>
+                            <ul class="links-subcategories">
+                                <li><a href="#">Elegant</a></li>
+                                <li><a href="#">Sports</a></li>
+                                <li><a href="#">School</a></li>
+                                <li><a href="#">Waist bag</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">The most new</a></li>
+                        <li><a href="#">The most sold</a></li>
+                        <li><a href="#">Promotion</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="products">
+                <div id="content"></div>
+                <div class="paginator" id="paginator">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="grid-footer">
+        <div class="quick">
+            <span>Quick links</span>
+            <a href="">Terms and conditions</a>
+            <a href="">Shipments</a>
+        </div>
+        <div class="info">
+            <span>Info</span>
+            <a href="">Help</a>
+            <a href="">Frequent questions</a>
+            <a href="">Reviews</a>
+        </div>
+    </footer>
+    <script src="home.js"></script>
+</body>
+
+</html>
