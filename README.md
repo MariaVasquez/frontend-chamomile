@@ -1,7 +1,7 @@
 
 # Portal Chamomile
 
-Proyecto **FrontEnd** para visualizar proyecto shopping de venta de bolsos inicialmente
+Proyecto **FrontEnd** para aplicativo shopping de venta de bolsos inicialmente
 
 ## Comenzando 🚀
 
