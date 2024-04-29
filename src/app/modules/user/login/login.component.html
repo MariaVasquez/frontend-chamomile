@@ -1,0 +1,51 @@
+<app-header></app-header>
+<div class="body">
+  <div class="container">
+    <h1 class="color-container title">Sign in</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="row form">
+      <div [ngClass]="{ 'was-validated': submitted && loginForm.invalid }">
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Email"
+          aria-label="Email"
+          aria-describedby="basic-addon1"
+          formControlName="username"
+          name="username"
+          required
+        />
+        @if (submitted && f['username'].errors) {
+        <div class="invalid-feedback">
+          @if (f['username'].errors['required']) {
+          <div>Email is required</div>
+          } @if (f['username'].errors['username']) {
+          <div>Email is invalid</div>
+          }
+        </div>
+        }
+      </div>
+      <div [ngClass]="{ 'was-validated': submitted && loginForm.invalid }">
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        @if (submitted && f['password'].errors) {
+        <div class="invalid-feedback">
+          @if (f['password'].errors['required']) {
+          <div>Password is required</div>
+          }
+        </div>
+        }
+      </div>
+      <button type="submit" class="btn btn-success last-row-element" [disabled]="loading">
+        <div class="spinner-border spinner-border-sm text-light" role="status" *ngIf="loading"></div>
+        Log in
+      </button>
+    </form>
+  </div>
+</div>

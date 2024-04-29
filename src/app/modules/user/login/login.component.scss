@@ -18,54 +18,29 @@
   background: linear-gradient(to bottom, white, #AEE2C6);
   border-radius: 1rem;
 }
-
 .form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr  2fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr;
   margin-left: 25%;
   margin-right: 25%;
   margin-top: 60px;
   gap: 1rem;
 }
-
 .color-container {
   color: #388A5E;
 }
-
 .title {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10%;
 }
-
 app-header {
   position: relative;
   z-index: 1;
 }
-
-.input-container {
-  position: relative;
-}
-
-.input-container input {
-  padding-right: 30px;
-}
-
-.error-message {
-  position: relative;
-  width: 100%;
-  margin-top: .25rem;
-  font-size: .875em;
-  color: #dc3545;
-}
-
-.valid {
-  border: 1px solid #28a745;
-}
-
 .last-row-element{
-  grid-column: span 2;
+  height: 100%;
 }
 

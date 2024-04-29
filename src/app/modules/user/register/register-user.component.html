@@ -1,2 +1,135 @@
 <app-header></app-header>
-<p>register-user works!</p>
+<ng-toast [style]="{width:'300px'}"></ng-toast>
+<div class="body">
+  <div class="container">
+    <h1 class="color-container title">Sign up</h1>
+    <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="row form">
+      <div [ngClass]="{ 'was-validated': submitted && userForm.invalid }">
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Email"
+          aria-label="Email"
+          aria-describedby="basic-addon1"
+          formControlName="username"
+          name="username"
+          required
+        />
+        @if (submitted && f['username'].errors) {
+          <div class="invalid-feedback">
+            @if (f['username'].errors['required']) {
+            <div>Email is required</div>
+            }
+        @if (f['username'].errors['username']) {
+            <div>Email is invalid</div>
+            }
+          </div>
+          }
+      </div>
+      <div [ngClass]="{ 'was-validated': submitted && userForm.invalid }">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="First name"
+          aria-label="First name"
+          aria-describedby="basic-addon1"
+          formControlName="firstName"
+          name="firstName"
+          required
+        />
+        @if (submitted && f['firstName'].errors) {
+          <div class="invalid-feedback">
+            @if (f['firstName'].errors['required']) {
+            <div>First name is required</div>
+            }
+          </div>
+          }
+      </div>
+      <div [ngClass]="{ 'was-validated': submitted && userForm.invalid }">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Last name"
+          aria-label="Last name"
+          aria-describedby="basic-addon1"
+          formControlName="lastName"
+          name="lastName"
+          required
+        />
+        @if (submitted && f['lastName'].errors) {
+          <div class="invalid-feedback">
+            @if (f['lastName'].errors['required']) {
+            <div>Last name is required</div>
+            }
+          </div>
+          }
+      </div>
+      <div [ngClass]="{ 'was-validated': submitted && userForm.invalid }">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Phone number"
+          aria-label="Phone number"
+          aria-describedby="basic-addon1"
+          formControlName="phoneNumber"
+          name="phoneNumber"
+          required
+        />
+        @if (submitted && f['phoneNumber'].errors) {
+          <div class="invalid-feedback">
+            @if (f['phoneNumber'].errors['required']) {
+            <div>Phone number is required</div>
+            }
+          </div>
+          }
+      </div>
+      <div [ngClass]="{ 'was-validated': submitted && userForm.invalid }">
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        @if (submitted && f['password'].errors) {
+        <div class="invalid-feedback">
+          @if (f['password'].errors['required']) {
+          <div>Password is required</div>
+          } @if (f['password'].errors['minlength']) {
+          <div>Password must be at least 6 characters</div>
+          } @if (f['password'].errors['maxlength']) {
+          <div>Password must not exceed 40 characters</div>
+          }
+        </div>
+        }
+      </div>
+      <div>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Repeat password"
+          formControlName="repeatPassword"
+          name="repeatPassword"
+          [ngClass]="{ 'is-invalid': submitted && f['repeatPassword'].errors }"
+          [ngClass]="{ 'valid': submitted && f['repeatPassword'].valid }"
+          required
+        />
+        @if (submitted && f['repeatPassword'].errors) {
+        <div class="invalid-feedback">
+          @if (f['repeatPassword'].errors['required']) {
+          <div>Confirm Password is required</div>
+          } @if (f['repeatPassword'].errors['matching']) {
+          <div>Confirm Password does not match</div>
+          }
+        </div>
+        }
+      </div>
+      <button type="submit" class="btn btn-success last-row-element" [disabled]="loading">
+        <div class="spinner-border spinner-border-sm text-light" role="status" *ngIf="loading"></div>
+        Create
+      </button>
+    </form>
+  </div>
+</div>
