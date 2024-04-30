@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  endpointRestBaseWithPort:'https://chmomile.azurewebsites.net/',
+  apiUrl:'https://chmomile.azurewebsites.net/',
   suffixEndpointWsRestListAddress: 'api/address',
   suffixEndpointWsRestRegisterUser: 'api/users/register',
   suffixEndpointWsRestGetUsername: 'api/users/by-username',

@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { User,UserLogin } from "../models/user/UserModel";
 import { Observable } from "rxjs";
 
-const apiUrl = `${environment.endpointRestBaseWithPort}`;
+const apiUrl = `${environment.apiUrl}`;
 
 const httpOptions = {
   headers: new HttpHeaders({
