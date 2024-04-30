@@ -1,0 +1,31 @@
+<header class="header-app   border-bottom">
+
+  <a  class="bar" (click)="toggleSidebar()" >
+    <i class="fa-solid fa-bars-staggered fa-flip-vertical fa-5x bar-icon"></i>
+  </a>
+
+  <a
+    href="/home"
+    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+    <img class="logo-img" src="../../../assets/asp/home/logo_trial.png" />
+  </a>
+
+  <ul class="nav nav-pills hearder-links">
+    <li class="nav-item">
+      <a href="#" class="nav-link color-container">Contact us</a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="condition" class="nav-link color-container logout">{{firstName}}</a>
+      <a *ngIf="!condition" href="login" class="nav-link color-container">{{firstName}}</a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="condition" class="nav-link color-container logout" (click)="logout()">Log out</a>
+      <a *ngIf="!condition" href="register" class="nav-link color-container">Sign up</a>
+    </li>
+    <li class="nav-item">
+      <a href="#">
+        <i class="fa-solid fa-cart-shopping fa-3x color-container"></i>
+      </a>
+    </li>
+  </ul>
+</header>
