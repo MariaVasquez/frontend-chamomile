@@ -48,9 +48,9 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2
         with:
-          name: ASP-app
+          name: dist
 
       - name: Login to Azure
         uses: azure/login@v1
