@@ -4,7 +4,7 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: ["develop"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,22 +22,29 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js version 20.12.2
+        uses: actions/setup-node@v2
         with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to Chamomile
-        id: deployment
-        uses: actions/deploy-pages@v4
+          node-version: '20.12.2'
+
+      - name: Install Angular CLI v16.2.14
+        run: npm install -g @angular/cli@16.2.14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular project
+        run: npm run build -- --configuration production
+
+      - name: Archive production build
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
