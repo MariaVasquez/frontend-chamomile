@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   apiUrl:'https://chmomile.azurewebsites.net/',
   suffixEndpointWsRestListAddress: 'api/address',
   suffixEndpointWsRestRegisterUser: 'api/users/register',
