@@ -1,0 +1,71 @@
+<div class="container-slider" [class.active]="isSidebarActive">
+  <!-- Header -->
+  <app-header (sidebarToggle)="toggleSidebar()" class="header" [class.full-width-header]="!isHeaderActive" [class.auto-width-header]="isHeaderActive"></app-header>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar" [class.active]="isSidebarActive">
+    <div class="sidebar-content">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        <span class="fs-4" style="color: #388A5E;">Menu</span>
+      </a>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-current="page">
+            <svg class="bi me-2" width="16" height="16"></svg>
+            Profile
+          </a>
+        </li>
+      </ul>
+      <hr>
+    </div>
+  </div>
+
+  <div class="main-content" class="header " >
+    <ng-toast [style]="{width:'300px'}"></ng-toast>
+      <div class="body">
+        <div  [class.container-full]="!isHeaderActive" [class.container-auto]="isHeaderActive">
+          <h1 class="color-container title">Sign in</h1>
+          <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="row form">
+            <div [ngClass]="{ 'was-validated': submitted && loginForm.invalid }">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Email"
+                aria-label="Email"
+                aria-describedby="basic-addon1"
+                formControlName="username"
+                name="username"
+                required
+              />
+            </div>
+            <div [ngClass]="{ 'was-validated': submitted && loginForm.invalid }">
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                formControlName="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-success last-row-element"
+              [disabled]="loading"
+            >
+              <div
+                class="spinner-border spinner-border-sm text-light"
+                role="status"
+                *ngIf="loading"
+              ></div>
+              Log in
+            </button>
+          </form>
+        </div>
+      </div>
+      <app-footer></app-footer>
+  </div>
+</div>
