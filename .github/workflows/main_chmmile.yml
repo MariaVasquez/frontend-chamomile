@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: dist/angular-workflow-example
+          path: dist/chamomile
 
   deploy:
     runs-on: ubuntu-latest
@@ -46,6 +46,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node-app
+          path: dist/chamomile
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
