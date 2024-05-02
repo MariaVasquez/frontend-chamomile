@@ -15,22 +15,25 @@ steps:
     versionSpec: '18.x'
   displayName: 'Install Node.js'
 
-- task: Npm@1  
-  displayName: 'Angular CLI 16.2.12'  
-  inputs:  
-    command: custom  
-    verbose: false  
-    customCommand: 'install -g @angular/cli@16.2.12'
- 
-- task: Npm@1  
-  displayName: 'npm install'  
+- script: |
+    cd AngularWithAzure/
+    npm install -g @angular/cli@16.2.14
+    npm install
+    ng build --prod
+  displayName: 'npm install and build'
+  workingDirectory: '$(Build.SourcesDirectory)'
+        
+- task: ArchiveFiles@2
+  displayName: 'Archive files'
   inputs:
-    command: custom  
-    customCommand: 'install file:custom-angular-lib.tgz --legacy-peer-deps'  
-   
-- task: Npm@1  
-  displayName: Build  
-  inputs: 
-    command: custom  
-    verbose: false  
-    customCommand: 'run build'
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/chamomile/'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
