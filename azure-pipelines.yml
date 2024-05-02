@@ -15,7 +15,22 @@ steps:
     versionSpec: '18.x'
   displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+- task: Npm@1  
+  displayName: 'Angular CLI 16.2.12'  
+  inputs:  
+    command: custom  
+    verbose: false  
+    customCommand: 'install -g @angular/cli@16.2.12'
+ 
+- task: Npm@1  
+  displayName: 'npm install'  
+  inputs:
+    command: custom  
+    customCommand: 'install file:custom-angular-lib.tgz --legacy-peer-deps'  
+   
+- task: Npm@1  
+  displayName: Build  
+  inputs: 
+    command: custom  
+    verbose: false  
+    customCommand: 'run build'
