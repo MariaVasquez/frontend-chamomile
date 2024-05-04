@@ -10,7 +10,7 @@ RUN npm install
 
 COPY . /app
 
-RUN npm run build
+RUN npm run build --prod
 
 FROM nginx:1.25.0-alpine
 

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkchamomile=self.webpackChunkchamomile||[]).push([[527],{527:(m,s,t)=>{t.r(s),t.d(s,{HomeModule:()=>n});var c=t(814),a=t(946);let n=(()=>{class o{static#t=this.\u0275fac=function(l){return new(l||o)};static#o=this.\u0275mod=a.oAB({type:o});static#s=this.\u0275inj=a.cJS({imports:[c.ez]})}return o})()}}]);
