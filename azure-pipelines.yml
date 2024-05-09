@@ -22,7 +22,7 @@ stages:
       inputs:
         versionSpec: '18.x'
       displayName: 'Install Node.js'
-    
+
     - script: |
         cd Chamomile/
         npm install -g @angular/cli@16.2.14
@@ -30,7 +30,7 @@ stages:
         ng build
       displayName: 'npm install and build'
       workingDirectory: '$(Build.SourcesDirectory)'
-            
+
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
@@ -39,7 +39,7 @@ stages:
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
-    
+
     - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
@@ -60,6 +60,25 @@ stages:
       runOnce:
         deploy:
           steps:
+          - task: Docker@2
+            displayName: 'Build and push nginx image'
+            inputs:
+              command: 'buildAndPush'
+              azureSubscriptionEndpoint: '<Tu conexión a Azure>'
+              dockerRegistryEndpoint: '<Tu registro de Docker>'
+              dockerFile: '$(System.DefaultWorkingDirectory)/path/to/nginx/Dockerfile'
+              imageName: 'nombre_de_tu_imagen_nginx:latest'
+              tags: |
+                $(Build.BuildId)
+                latest
+          - task: Docker@2
+            displayName: 'Run nginx container'
+            inputs:
+              command: 'run'
+              azureSubscriptionEndpoint: '<Tu conexión a Azure>'
+              containerRegistry: '<Tu registro de Docker>'
+              imageName: 'nombre_de_tu_imagen_nginx:latest'
+              ports: '80:80'
           - task: AzureWebApp@1
             displayName: 'Deploy App Service'
             inputs:
@@ -77,7 +96,7 @@ stages:
       displayName: 'DeployAcceptance'
       steps:
       - script: echo Deploying to Acceptance
-      
+
 - stage: Production
   dependsOn: [ Acceptance ]
   displayName: 'Deploy to Production'
