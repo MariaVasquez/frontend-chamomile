@@ -81,11 +81,11 @@ stages:
           - task: Docker@2
             displayName: Run NGINX container
             inputs:
-              command: run
               containerRegistry: 'chamomilecontainer'
               repository: 'chamomile'
+              command: run
+              arguments: '-d -p 80:80 chamomile:latest'
               detached: true
-              ports: '80:80'
 
           - task: AzureWebApp@1
             inputs:
