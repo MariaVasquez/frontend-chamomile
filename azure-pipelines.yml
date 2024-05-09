@@ -77,29 +77,4 @@ stages:
               containerRegistry: 'chamomilecontainer'
               repository: 'chamomile'
               tags: |
-                $(Build.BuildId)
-
-- stage: Acceptance
-  dependsOn: [ Development ]
-  displayName: 'Deploy to Acceptance'
-  jobs:
-    - job:  DeployToAcceptance
-      displayName: 'DeployAcceptance'
-      steps:
-      - checkout: self
-      - script: echo Deploying to Acceptance
-
-- stage: Production
-  dependsOn: [ Acceptance ]
-  displayName: 'Deploy to Production'
-  jobs:
-    - deployment: DeployProduction
-      pool:
-        vmImage: 'ubuntu-latest'
-      environment: Production
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - checkout: self
-            - script: echo Deploying to Production
+                latest
