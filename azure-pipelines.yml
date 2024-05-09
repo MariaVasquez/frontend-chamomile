@@ -62,13 +62,36 @@ stages:
           steps:
           - checkout: self
           - task: Docker@2
-            displayName: Build and push an image to container registry
+            displayName: Build Docker image
             inputs:
-              command: buildAndPush
+              command: build
               containerRegistry: 'chamomilecontainer'
               repository: 'chamomile'
-              dockerfile: $(Build.SourcesDirectory)/Dockerfile
+              dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+          
+          - task: Docker@2
+            displayName: Push Docker image
+            inputs:
+              command: push
+              containerRegistry: 'chamomilecontainer'
+              repository: 'chamomile'
+              tags: |
+                $(Build.BuildId)
 
+          - task: Docker@2
+            displayName: Run NGINX container
+            inputs:
+              command: run
+              containerRegistry: 'chamomilecontainer'
+              repository: 'chamomile'
+              detached: true
+              ports: '80:80'
+
+          - task: AzureWebApp@1
+            inputs:
+              azureSubscription: 'Suscripción de Azure 1(3a9ee721-4423-43cb-9efb-ddaefd3c364e)'
+              appType: 'webAppLinux'
+              appName: 'chmmile'
           - task: AzureWebApp@1
             inputs:
               azureSubscription: 'Suscripción de Azure 1(3a9ee721-4423-43cb-9efb-ddaefd3c364e)'
