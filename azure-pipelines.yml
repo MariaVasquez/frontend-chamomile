@@ -1,9 +1,3 @@
-# Node.js
-
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
 - main
 
@@ -77,34 +71,3 @@ stages:
               repository: 'chamomile'
               tags: |
                 $(Build.BuildId)
-
-          - task: AzureWebApp@1
-            inputs:
-              azureSubscription: 'Suscripción de Azure 1(3a9ee721-4423-43cb-9efb-ddaefd3c364e)'
-              appType: 'webAppLinux'
-              appName: 'chmmile'
-              package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
-              runtimeStack: 'NODE|18-lts'
-
-- stage: Acceptance
-  dependsOn: [ Development ]
-  displayName: 'Deploy to Acceptance'
-  jobs:
-    - job:  DeployToAcceptance
-      displayName: 'DeployAcceptance'
-      steps:
-      - script: echo Deploying to Acceptance
-
-- stage: Production
-  dependsOn: [ Acceptance ]
-  displayName: 'Deploy to Production'
-  jobs:
-    - deployment: DeployProduction
-      pool:
-        vmImage: 'ubuntu-latest'
-      environment: Production
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - script: echo Deploying to Production
