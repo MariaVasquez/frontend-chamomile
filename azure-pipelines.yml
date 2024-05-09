@@ -68,6 +68,7 @@ stages:
               appName: 'chmmile'
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               runtimeStack: 'NODE|18-lts'
+              
           - script: |
               docker run -d --expose=80 -p 80:80 --name chmmile_1_2fcaa7f7 \
               -e WEBSITE_USE_DIAGNOSTIC_SERVER=true \
