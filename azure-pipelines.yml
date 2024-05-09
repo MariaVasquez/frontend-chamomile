@@ -65,7 +65,7 @@ stages:
             inputs:
               containerRegistry: 'chamomilecontainer'
               command: 'buildAndPush'
-              Dockerfile: '**/Dockerfile'
+              Dockerfile: '.pipeline/Dockerfile'
 
           - task: AzureWebApp@1
             inputs:
