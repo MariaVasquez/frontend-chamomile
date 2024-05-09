@@ -61,11 +61,17 @@ stages:
         deploy:
           steps:
          
+          - checkout: self
+      
           - task: Docker@2
+            displayName: Build and push an image to container registry
             inputs:
+              command: buildAndPush
               containerRegistry: 'chamomilecontainer'
-              command: 'buildAndPush'
-              Dockerfile: '.pipeline/Dockerfile'
+              repository: 'chamomile'
+              dockerfile: $(Build.SourcesDirectory)/Dockerfile
+              tags: |
+                $(tag)
 
           - task: AzureWebApp@1
             inputs:
