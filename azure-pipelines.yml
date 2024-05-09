@@ -70,8 +70,6 @@ stages:
               containerRegistry: 'chamomilecontainer'
               repository: 'chamomile'
               dockerfile: $(Build.SourcesDirectory)/Dockerfile
-              tags: |
-                $(tag)
 
           - task: AzureWebApp@1
             inputs:
