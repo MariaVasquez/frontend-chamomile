@@ -76,5 +76,3 @@ stages:
               command: push
               containerRegistry: 'chamomilecontainer'
               repository: 'chamomile'
-              tags: |
-                latest
