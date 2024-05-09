@@ -71,7 +71,7 @@ stages:
               slotName: 'production'
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               runtimeStack: 'NODE|18-lts'
-              appSettings: '-p 80 -RequestTimeout 5000'
+              appSettings: '-p 7070 -RequestTimeout 5000'
 
 - stage: Acceptance
   dependsOn: [ Development ]
