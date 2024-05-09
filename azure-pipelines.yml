@@ -60,25 +60,15 @@ stages:
       runOnce:
         deploy:
           steps:
+          - checkout: self
           - task: Docker@2
-            displayName: 'Build and push nginx image'
+            displayName: Build and push an image to container registry
             inputs:
-              command: 'buildAndPush'
-              azureSubscriptionEndpoint: '<Tu conexión a Azure>'
-              dockerRegistryEndpoint: '<Tu registro de Docker>'
-              dockerFile: '$(System.DefaultWorkingDirectory)/path/to/nginx/Dockerfile'
-              imageName: 'nombre_de_tu_imagen_nginx:latest'
-              tags: |
-                $(Build.BuildId)
-                latest
-          - task: Docker@2
-            displayName: 'Run nginx container'
-            inputs:
-              command: 'run'
-              azureSubscriptionEndpoint: '<Tu conexión a Azure>'
-              containerRegistry: '<Tu registro de Docker>'
-              imageName: 'nombre_de_tu_imagen_nginx:latest'
-              ports: '80:80'
+              command: buildAndPush
+              containerRegistry: 'chamomilecontainer'
+              repository: 'chamomile'
+              dockerfile: $(Build.SourcesDirectory)/Dockerfile
+
           - task: AzureWebApp@1
             inputs:
               azureSubscription: 'Suscripción de Azure 1(3a9ee721-4423-43cb-9efb-ddaefd3c364e)'
