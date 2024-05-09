@@ -66,20 +66,12 @@ stages:
               azureSubscription: 'Suscripción de Azure 1(3a9ee721-4423-43cb-9efb-ddaefd3c364e)'
               appType: 'webAppLinux'
               appName: 'chmmile'
+              deployToSlotOrASE: true
+              resourceGroupName: 'chmomile_group'
+              slotName: 'production'
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               runtimeStack: 'NODE|18-lts'
-              
-          - script: |
-              docker run -d --expose=80 -p 80:80 --name chmmile_1_2fcaa7f7 \
-              -e WEBSITE_USE_DIAGNOSTIC_SERVER=true \
-              -e WEBSITE_SITE_NAME=chmmile \
-              -e WEBSITE_AUTH_ENABLED=False \
-              -e WEBSITE_ROLE_INSTANCE_ID=0 \
-              -e WEBSITE_HOSTNAME=chmmile.azurewebsites.net \
-              -e WEBSITE_INSTANCE_ID=547ad6530bcf318c7dcff9f278abe48477eb1a6d4d5cf3e0f863a095bd0eac2b \
-              -e NODE_OPTIONS=--require /agents/nodejs/build/src/Loader.js \
-              appsvc/node:18-lts_20240321.5.tuxprod pm2 serve /home/site/wwwroot -no-daemon-spa
-            displayName: 'Run Docker container with custom port'
+              appSettings: '-p 80 -RequestTimeout 5000'
 
 - stage: Acceptance
   dependsOn: [ Development ]
