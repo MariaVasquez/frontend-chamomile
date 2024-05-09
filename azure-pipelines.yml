@@ -1,8 +1,5 @@
 trigger:
-- main
-
-pool:
-  name: default
+- master
 
 stages:
 - stage: Build
