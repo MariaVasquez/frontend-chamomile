@@ -99,6 +99,7 @@ stages:
     - job:  DeployToAcceptance
       displayName: 'DeployAcceptance'
       steps:
+      - checkout: self
       - script: echo Deploying to Acceptance
 
 - stage: Production
@@ -113,4 +114,5 @@ stages:
         runOnce:
           deploy:
             steps:
+            - checkout: self
             - script: echo Deploying to Production
