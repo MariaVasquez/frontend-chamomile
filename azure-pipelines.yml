@@ -78,6 +78,12 @@ stages:
               tags: |
                 $(Build.BuildId)
 
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'chamomilecontainer'
+              repository: 'chamomile'
+              command: 'start'
+
           - task: AzureWebApp@1
             inputs:
               azureSubscription: 'Suscripción de Azure 1(3a9ee721-4423-43cb-9efb-ddaefd3c364e)'
