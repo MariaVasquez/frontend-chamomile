@@ -79,10 +79,12 @@ stages:
                 $(Build.BuildId)
 
           - task: Docker@2
+            displayName: Run docker
             inputs:
+              command: start
               containerRegistry: 'chamomilecontainer'
               repository: 'chamomile'
-              command: 'start'
+              
 
           - task: AzureWebApp@1
             inputs:
