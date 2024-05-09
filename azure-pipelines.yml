@@ -84,7 +84,7 @@ stages:
               containerRegistry: 'chamomilecontainer'
               repository: 'chamomile'
               command: run
-              arguments: '-d -p 80:80 chamomile:latest'
+              arguments: '-d -p 80:80 chamomile'
               detached: true
 
           - task: AzureWebApp@1
