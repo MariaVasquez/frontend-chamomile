@@ -78,12 +78,6 @@ stages:
               tags: |
                 $(Build.BuildId)
 
-
-          - task: AzureWebApp@1
-            inputs:
-              azureSubscription: 'Suscripción de Azure 1(3a9ee721-4423-43cb-9efb-ddaefd3c364e)'
-              appType: 'webAppLinux'
-              appName: 'chmmile'
           - task: AzureWebApp@1
             inputs:
               azureSubscription: 'Suscripción de Azure 1(3a9ee721-4423-43cb-9efb-ddaefd3c364e)'
